@@ -26,12 +26,12 @@ docker compose -f docker-compose.yml up --build
 - Optimized for container lifecycle
 ### Project Structure
 .
-├── app.py
-├── Dockerfile
-├── requirements.txt
-├── docker-compose.yml            # Production
-├── docker-compose.dev.yaml       # Development
-└── entrypoint.sh                 # Optional: switches modes
+├── app.py </br>
+├── Dockerfile </br>
+├── requirements.txt </br>
+├── docker-compose.yml </br>        # Production
+├── docker-compose.dev.yaml </br>   # Development
+└── entrypoint.sh </br>             # Optional: switches modes
 
 ### Redis Setup
 Redis runs as a service in both modes
@@ -41,8 +41,8 @@ redis.Redis(host=os.getenv("REDIS_HOST", "localhost"))
 ```
 
 🧪 Common Issues
-Problem           	          Fix </br>
-ModuleNotFoundError	          Check import paths in app.py </br>
-Container exits immediately	  Use correct CMD or entrypoint </br>
-Redis not reachable	Retry     logic or depends_on </br>
-Volume overwrites code	      Avoid mounting to /code </br>
+Problem           	          Fix 
+ModuleNotFoundError	          Check import paths in app.py
+Container exits immediately	  Use correct CMD or entrypoint
+Redis not reachable	Retry     logic or depends_on
+

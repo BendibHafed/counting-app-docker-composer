@@ -1,0 +1,34 @@
+services:
+  web-fe:
+    build: .
+    environment:
+      - FLASK_ENV=development
+      - REDIS_HOST=redis # use the service name (Important)
+      - REDIS_PORT=6379
+    command: python app.py
+    ports:
+      - "5000:5000"    
+    networks:
+      - counter-net # Here we use the created network
+    volumes:
+      - type: volume
+        source: counter-vol # Here we use the volume created
+        target: /data
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379" # to local Expose too
+    networks:
+      counter-net: # Here we use the created network
+    restart: unless-stopped
+    
+networks:
+  counter-net: # Create a network named counter-net
+
+volumes:
+  counter-vol: # Create a volume called counter-vol
+
+
